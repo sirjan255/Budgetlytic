@@ -117,7 +117,6 @@ def add_custom_category(name, emoji="🔖", keywords=None):
     for kw in new_cat["keywords"]:
         CATEGORY_KEYWORDS[kw.lower()].append(name)
     CATEGORY_NAMES.append(name)
-    # Optionally, save to JSON config
     with open(CATEGORY_CONFIG_FILE, "w", encoding="utf-8") as f:
         json.dump(CATEGORY_DATA, f, ensure_ascii=False, indent=2)
 
