@@ -59,10 +59,8 @@ def upload_bill():
     blob.upload_from_string(img_bytes, content_type='image/jpeg')
     public_url = blob.public_url
     # OCR with Google Vision
-    image = vision.Image(content=img_bytes)
-    response = gcv_client.text_detection(image=image)
-    texts = response.text_annotations
-    ocr_text = texts[0].description if texts else ""
+    from ocr.photo_ocr import extract_text_from_image
+    ocr_text = extract_text_from_image(img_bytes)
     # Store in Firestore
     data = {
         "img_url": public_url,
