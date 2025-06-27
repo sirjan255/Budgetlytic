@@ -39,6 +39,9 @@ def load_whisper_model():
 
 whisper_model = load_whisper_model()
 
+# --- Budgetlytic AI Categorizer Import ---
+from ai.categorizer import category_ui, suggest_categories
+
 #    UTILITY FUNCTIONS
 
 def get_user_id():
@@ -93,8 +96,6 @@ def get_current_time():
     tz = pytz.timezone('Asia/Kolkata')
     return datetime.now(tz).strftime("%Y-%m-%d %H:%M")
 
-#    STREAMLIT UI & LOGIC
-
 # --- App Configurations ---
 st.set_page_config(page_title="Budgetlytic", page_icon=":money_with_wings:")
 
@@ -117,12 +118,17 @@ menu = st.sidebar.radio("Navigate", [
 #    PAGE: Add Expense
 if menu == "Add Expense":
     st.header("Add Expense Manually")
-    # Category selection (editable as needed)
-    category = st.selectbox("Category", [
-        "Food", "Transport", "Bills", "Shopping", "Entertainment", "Medical", "Other"
-    ])
+    # Category selection
     amount = st.number_input("Amount (INR)", min_value=1.0, step=1.0)
     note = st.text_input("Notes (optional, e.g. details of the expense)")
+    st.markdown("#### AI-based Category Suggestion")
+    category = category_ui(note)
+    if not category:
+        # fallback to manual choice if user doesn't select from AI UI
+        category = st.selectbox("Or choose manually", [
+            "Food & Dining", "Transport", "Utilities & Bills", "Shopping", "Entertainment", "Medical & Health", 
+            "Gifts & Donations", "Children & Education", "Investment & Savings", "Personal Care", "Home & Rent", "Other"
+        ])
     if st.button("Add Expense"):
         data = {
             "category": category,
@@ -146,11 +152,19 @@ elif menu == "Upload Bill":
         ocr_text = ocr_image(image_bytes)
         st.subheader("Extracted Text")
         st.code(ocr_text)
+        st.markdown("#### AI-based Category Suggestion")
+        bill_category = category_ui(ocr_text)
+        if not bill_category:
+            bill_category = st.selectbox("Or choose manually", [
+                "Food & Dining", "Transport", "Utilities & Bills", "Shopping", "Entertainment", "Medical & Health", 
+                "Gifts & Donations", "Children & Education", "Investment & Savings", "Personal Care", "Home & Rent", "Other"
+            ])
         if st.button("Save Bill Data"):
             public_url = upload_image_to_firebase(image_bytes, uploaded_img.name)
             data = {
                 "img_url": public_url,
                 "ocr_text": ocr_text,
+                "category": bill_category,
                 "timestamp": get_current_time(),
                 "type": "bill"
             }
@@ -170,20 +184,22 @@ elif menu == "Voice Logging":
         transcript = transcribe_audio(audio_bytes)
         st.subheader("Transcribed Text")
         st.write(transcript)
-        # Simple parsing for amount and category using regex and heuristics
+        st.markdown("#### AI-based Category Suggestion")
+        voice_category = category_ui(transcript)
+        # Try amount extraction (fallback to user input if not detected)
         import re
-        amt = re.findall(r"\b\d{2,6}\b", transcript)
-        cat = None
-        for c in [
-            "food", "transport", "bill", "shopping", "entertainment", "medical", "other",
-            "lunch", "dinner", "breakfast"
-        ]:
-            if c in transcript.lower():
-                cat = c.title()
+        amt = re.findall(r"\b\d{2,8}\b", transcript)
+        extracted_amt = float(amt[0]) if amt else 0.0
+        amount_voice = st.number_input("Amount (from voice or enter manually)", min_value=1.0, step=1.0, value=extracted_amt or 1.0)
+        if not voice_category:
+            voice_category = st.selectbox("Or choose manually", [
+                "Food & Dining", "Transport", "Utilities & Bills", "Shopping", "Entertainment", "Medical & Health", 
+                "Gifts & Donations", "Children & Education", "Investment & Savings", "Personal Care", "Home & Rent", "Other"
+            ])
         if st.button("Save Voice Expense"):
             data = {
-                "category": cat or "Other",
-                "amount": float(amt[0]) if amt else 0.0,
+                "category": voice_category,
+                "amount": amount_voice,
                 "note": transcript,
                 "timestamp": get_current_time(),
                 "type": "voice"
@@ -225,7 +241,7 @@ elif menu == "Insights":
         st.metric("Total Spent", f"₹{df['amount'].sum():,.2f}")
         st.metric("Number of Expenses", len(df))
         # Highlight highest spending category
-        if cat_sum.iloc[0] > 0:
+        if not cat_sum.empty and cat_sum.iloc[0] > 0:
             st.warning(f"Highest spending: **{cat_sum.index[0]}** (₹{cat_sum.iloc[0]:,.2f})")
     else:
         st.info("Not enough data for insights. Add more expenses!")
