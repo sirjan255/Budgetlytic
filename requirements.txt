@@ -1,0 +1,26 @@
+# Streamlit: For building the interactive web interface
+streamlit
+
+# Firebase Admin SDK: For secure, scalable backend and user data storage
+firebase-admin
+
+# Omnidimension: For advanced voice parsing and AI-powered voice features
+omnidimension
+
+# Google Cloud Vision: For OCR (extracting text from bill/receipt images)
+google-cloud-vision
+
+# BeautifulSoup4: For web scraping (e.g., negotiating bill comparisons, finding local deals)
+beautifulsoup4
+
+# python-dotenv: For managing API keys and environment variables securely
+python-dotenv
+
+# pytz: For timezone handling (user-specific reminders, internationalization)
+pytz
+
+# Pillow: For image processing (cropping, resizing, etc.)
+pillow
+
+# OpenAI Whisper (open-source, free, runs locally; NOT the paid API)
+openai-whisper
