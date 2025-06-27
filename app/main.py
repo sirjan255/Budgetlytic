@@ -64,14 +64,10 @@ def upload_image_to_firebase(img_bytes, filename):
 
 def ocr_image(image_bytes):
     """
-    Use Google Vision OCR to extract text from image bytes.
+    Uses Google Vision OCR to extract text from image bytes.
     """
-    image = vision.Image(content=image_bytes)
-    response = gcv_client.text_detection(image=image)
-    texts = response.text_annotations
-    if texts:
-        return texts[0].description
-    return ""
+    from ocr.photo_ocr import extract_text_from_image
+    return extract_text_from_image(image_bytes)
 
 def transcribe_audio(audio_bytes):
     """
