@@ -1,0 +1,56 @@
+Item,Matched Category,Score,Explanation,Amount (if found)
+1x Milk (Amul Taaza)               ₹52,Groceries,3,milk (exact),52.0
+1x Eggs - 12 pcs                   ₹70,Groceries,3,eggs (exact),70.0
+1x Dove Shampoo                   ₹180,Personal Care,3,shampoo (exact),180.0
+1x Parle-G Biscuits               ₹10,Groceries,3,biscuit (exact),10.0
+1x Dettol Handwash                ₹99,Home Essentials,6,"dettol (exact), handwash (exact)",99.0
+1x Recharge - Airtel              ₹299,Utilities & Bills,3,recharge (exact),299.0
+1x Taxi (Ola) to office           ₹220,Transport,6,"taxi (exact), ola (exact)",220.0
+1x Electricity Bill              ₹1245,Utilities & Bills,6,"electricity (exact), bill (exact)",1245.0
+1x Book - Data Structures         ₹399,Education,3,book (exact),399.0
+1x Birthday Gift - Watch         ₹1200,Gifts & Donations,6,"birthday (exact), gift (exact)",1200.0
+1x AstroQuartz Bracelet - Amethyst ₹999,Others,1,Heuristic or ConceptNet match,999.0
+1x Gym Bag - 40L Capacity          ₹850,Medical & Health,3,gym (exact),850.0
+1x Rent for a treehouse weekend  ₹7800,Rent & Housing,3,rent (exact),7800.0
+1x Candlelight Dinner             ₹2199,Food & Dining,3,dinner (exact),2199.0
+1x Smart Bulb - WiFi Enabled      ₹499,Utilities & Bills,3,wifi (exact),499.0
+1x Swiggy Biryani Bash Combo      ₹789,Food & Dining,6,"swiggy (exact), biryani (exact)",789.0
+1x Festive Kurta (men)           ₹1599,Clothing & Fashion,1,kurta → shirt (ConceptNet),1599.0
+1x Kid’s Art Kit - Unicorn Series ₹670,Childcare,3,kid (exact),670.0
+1x Face Mask Pack (3pc)           ₹250,Others,1,Heuristic or ConceptNet match,250.0
+1x AC filter + cleaning service  ₹1200,Utilities & Bills,1,ac → electricity (ConceptNet),1200.0
+1x Netflix Sub - 3 months         ₹1947,Entertainment,3,netflix (exact),1947.0
+1x Wooden Chess Set               ₹899,Others,1,Heuristic or ConceptNet match,899.0
+1x HobbyCraft Doodle Book         ₹299,Education,3,book (exact),299.0
+1x Umbrella - Windproof XL        ₹499,Others,1,Heuristic or ConceptNet match,499.0
+1x Custom Poster Print            ₹600,Others,1,Heuristic or ConceptNet match,600.0
+1x Snacks Hamper @PartyStore     ₹1300,Food & Dining,2,snack ~ snacks (fuzzy),1300.0
+1x Learning App Yearly Fee       ₹2999,Education,2,fee ~ fees (fuzzy),2999.0
+1x Bluetooth Sleep Headband       ₹999,Others,1,Heuristic or ConceptNet match,999.0
+1x E-book: History of Typography  ₹349,Education,3,book (exact),349.0
+1x Raincoat for Pet Dog           ₹850,Clothing & Fashion,1,raincoat → clothes (ConceptNet),850.0
+1x Monthly Planner (leather)      ₹649,Others,1,Heuristic or ConceptNet match,649.0
+1x Saree - Bengal Cotton          ₹2099,Clothing & Fashion,3,saree (exact),2099.0
+1x Rakhi with sweets combo        ₹699,Others,1,Heuristic or ConceptNet match,699.0
+1x IPL Final Watch Party          ₹2200,Others,1,Heuristic or ConceptNet match,2200.0
+1x College Lab Deposit            ₹5000,Investment & Savings,3,deposit (exact),5000.0
+1x Premium Artist Brushes         ₹1199,Investment & Savings,3,premium (exact),1199.0
+"1x Socks, Set of 5                ₹399",Others,1,Heuristic or ConceptNet match,399.0
+1x Luggage Tag - Space Edition    ₹150,Others,1,Heuristic or ConceptNet match,150.0
+1x Glass Jar Set (x6)             ₹1099,Others,1,Heuristic or ConceptNet match,1099.0
+1x Apartment Maintenance Fee      ₹1500,Rent & Housing,6,"apartment (exact), maintenance (exact)",1500.0
+1x Face Serum + Lip Tint Combo    ₹799,Others,1,Heuristic or ConceptNet match,799.0
+1x Dog Training Course            ₹2100,Others,1,Heuristic or ConceptNet match,2100.0
+1x Yoga Ball (65cm)               ₹650,Medical & Health,3,yoga (exact),650.0
+1x Kindle Unlimited (1 year)     ₹1699,Others,1,Heuristic or ConceptNet match,1699.0
+1x IPL Match Bet w/ Friend        ₹500,Others,1,Heuristic or ConceptNet match,500.0
+1x Parking Fee (3 hrs)             ₹60,Transport,3,parking (exact),60.0
+1x Beard Grooming Kit             ₹1800,Others,1,Heuristic or ConceptNet match,1800.0
+1x Music Festival Entry Pass      ₹2499,Others,1,Heuristic or ConceptNet match,2499.0
+1x Vegan Cake (Online order)      ₹1890,Others,1,Heuristic or ConceptNet match,1890.0
+1x Freelancer Payout Fee          ₹250,Education,2,fee ~ fees (fuzzy),250.0
+1x Webinar - UI/UX Certification ₹1300,Others,1,Heuristic or ConceptNet match,1300.0
+1x Mystery Box - Surprise Toys    ₹420,Others,1,Heuristic or ConceptNet match,420.0
+1x Hair Spa at Salon              ₹1600,Shopping,1,salon → shop (ConceptNet),1600.0
+1x Refrigerator Defrost Fix       ₹700,Others,1,Heuristic or ConceptNet match,700.0
+1x Coffee Beans - Arabica Blend   ₹799,Groceries,5,"coffee (exact), bean → fruit (ConceptNet), bean → vegetable (ConceptNet)",799.0
