@@ -134,18 +134,52 @@ st.title("Budgetlytic :money_with_wings:")
 st.markdown("**Your AI-powered personal finance assistant!**")
 
 # --- Sidebar Navigation ---
-menu = st.sidebar.radio(
-    "Navigate",
-    [
-        "Add Expense",
-        "Upload Bill",
-        "Voice Logging",
-        "View Expenses",
-        "Insights",
-        "Settings",
-        "About",
-    ],
+st.sidebar.header("Navigate")
+
+# Initialize session state for menu if not exists
+if "current_menu" not in st.session_state:
+    st.session_state.current_menu = "Add Expense"
+
+# Menu options for radio button
+menu_options = [
+    "💰 Add Expense",
+    "📄 Upload Bill",
+    "🎤 Voice Logging",
+    "📊 View Expenses",
+    "📈 Insights",
+    "⚙️ Settings",
+    "ℹ️ About",
+]
+
+# Map display names to internal keys
+menu_mapping = {
+    "💰 Add Expense": "Add Expense",
+    "📄 Upload Bill": "Upload Bill",
+    "🎤 Voice Logging": "Voice Logging",
+    "📊 View Expenses": "View Expenses",
+    "📈 Insights": "Insights",
+    "⚙️ Settings": "Settings",
+    "ℹ️ About": "About",
+}
+
+# Find current selection for radio button
+current_display = None
+for display, internal in menu_mapping.items():
+    if internal == st.session_state.current_menu:
+        current_display = display
+        break
+
+# Use radio button for navigation with proper highlighting
+selected_menu = st.sidebar.radio(
+    "Choose a page:",
+    options=menu_options,
+    index=menu_options.index(current_display) if current_display else 0,
+    label_visibility="collapsed",
 )
+
+# Update session state based on selection
+st.session_state.current_menu = menu_mapping[selected_menu]
+menu = st.session_state.current_menu
 
 #    PAGE: Add Expense
 if menu == "Add Expense":
