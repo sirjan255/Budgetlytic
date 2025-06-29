@@ -1,1 +1,120 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+pytestdebug.log
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# dotenv environment variables
 .env
+.env.*
+
+# Cloudinary credentials
+cloudinary_url.py
+
+# Service account keys, secrets, and credentials
+serviceAccountKey.json
+*.pem
+*.key
+*.crt
+
+# VS Code settings
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Python virtual environments
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Logs
+*.log
+
+# Images, output files, and local data
+/output/
+*.out
+*.tmp
+
+# Ignore Streamlit's cache
+.streamlit/
+
+# Ignore node_modules (if you use npm for frontend)
+node_modules/
+
+# Ignore Flask/Streamlit static files (if generated locally)
+staticfiles/
+static/
+
+# Ignore any SQLite or other local DBs
+*.sqlite3
+*.db
+
+# Ignore test and debug files
+test.*
+debug.*
+
+# Ignore coverage and profiling files
+*.pstats
+*.lprof
+
+# Ignore backup files
+*~
+*.bak
+
+# Ignore compiled code
+*.pyo
+
+# Misc
+.idea/
