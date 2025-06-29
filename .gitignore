@@ -2,3 +2,4 @@
 conceptnet_cache.json
 serviceAccountKey.json
 venv
+__pycache__
