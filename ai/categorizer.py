@@ -98,7 +98,7 @@ def suggest_categories(text, top_n=3):
     # Ranking
     ranked = sorted(scores.items(), key=lambda x: (-x[1], CATEGORY_NAMES.index(x[0])))
     out = []
-    for cat, score in ranked[:top_n]:
+    for cat, score, in ranked[:top_n]:
         emoji = next((c["emoji"] for c in CATEGORY_DATA if c["name"] == cat), "")
         explanation = f"Matched keywords: {', '.join(matched_keywords[cat])}" if matched_keywords[cat] else "No strong keyword match."
         out.append((cat, score, emoji, explanation))

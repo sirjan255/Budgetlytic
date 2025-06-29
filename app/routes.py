@@ -1,23 +1,31 @@
 from flask import Blueprint, request, jsonify
-import firebase_admin
-from firebase_admin import firestore, storage
+from firebase_admin import credentials, firestore, initialize_app
 import whisper
 from google.cloud import vision
+import cloudinary
+import cloudinary.uploader
 import os
 import io
 from datetime import datetime
 import pytz
 
-# Initialize Flask blueprint
-routes = Blueprint('routes', __name__)
+# ---- CLOUDINARY SETUP ----
+cloudinary.config(
+    cloud_name=os.environ.get("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.environ.get("CLOUDINARY_API_KEY"),
+    api_secret=os.environ.get("CLOUDINARY_API_SECRET")
+)
 
-# Initialize Firestore and Storage
+# ---- FIRESTORE SETUP ----
+# (Assumes firebase_admin.initialize_app() is called in your main app startup!)
 db = firestore.client()
-bucket = storage.bucket()
 gcv_client = vision.ImageAnnotatorClient()
 
 # Whisper model (load once)
 whisper_model = whisper.load_model("base")
+
+# Initialize Flask blueprint
+routes = Blueprint('routes', __name__)
 
 # Utility: Get current time in IST
 def get_current_time():
@@ -54,10 +62,13 @@ def upload_bill():
     user_id = request.form.get('user_id', 'anonymous')
     filename = file.filename
     img_bytes = file.read()
-    # Upload to Firebase Storage
-    blob = bucket.blob(f'uploads/{user_id}/{filename}')
-    blob.upload_from_string(img_bytes, content_type='image/jpeg')
-    public_url = blob.public_url
+    # Upload to Cloudinary
+    result = cloudinary.uploader.upload(
+        io.BytesIO(img_bytes),
+        public_id=f'uploads/{user_id}/{filename}',
+        resource_type="image"
+    )
+    public_url = result.get("secure_url")
     # OCR with Google Vision
     from ocr.photo_ocr import extract_text_from_image
     ocr_text = extract_text_from_image(img_bytes)
